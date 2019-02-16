@@ -1,0 +1,111 @@
+<!--
+  Copyright 2019 OPEN-EYES S.r.l.
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('screen',{
+        category: 'OpenEyes',
+        color: '#a6bbcf',
+        defaults: {
+			bid: {value:"1"},
+			fontsize: {value:"30"},
+			fontcol: {value:"000000"},
+			maincol: {value:"FFFFFF"},
+			gradcol: {value:"000000"},
+            name: {value:"screen"}    //  along with default values.
+       	},
+        inputs:1,
+        outputs:0,
+        icon: "screen-monitor.png",
+	    label: function() {     // sets the default label contents
+            return this.name||this.topic||"screen";
+        },
+        labelStyle: function() { // sets the class to apply to the label
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="screen">
+<!--
+	<div class="form-row">
+		<label for="node-input-bid"><i class="icon-tag"></i> Button id</label>
+		<select type="text" id="node-input-bid" style="width:70%;">
+            <option value="1">BUTTON 1</option>
+            <option value="2">BUTTON 2</option>
+            <option value="3">BUTTON 3</option>
+            <option value="4">BUTTON 4</option>
+            <option value="5">BUTTON 5</option>
+            <option value="6">BUTTON 6</option>
+        </select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-fontsize"> Font size</label>
+        <select type="text" id="node-input-fontsize" style="width:70%;">
+            <option value="10">10 pixel</option>
+            <option value="20">20 pixel</option>
+            <option value="30">30 pixel</option>
+            <option value="40">40 pixel</option>
+            <option value="50">50 pixel</option>
+            <option value="60">60 pixel</option>
+        </select>
+    </div>
+	<div class="form-row">
+        <label for="node-input-fontcol"> Font color</label>
+        <input type="text" id="node-input-fontcol" placeholder="color xxxxxx format">
+    </div>
+
+-->
+    <div class="form-row">
+        <label for="node-input-maincol"> Screen color</label>
+        <input type="text" id="node-input-maincol" placeholder="color xxxxxx format">
+    </div>
+    <div class="form-row">
+        <label for="node-input-gradcol"> gradient color</label>
+        <input type="text" id="node-input-gradcol" placeholder="color xxxxxx format">
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="screen">
+
+	<p>An OpenEyes GUI interface node that setup a new screen into LCD display</p>
+
+	<ul>
+		<code>Button color</code> - Screen color in format rrggbb hex.
+	</ul>
+
+	<ul>
+		<code>Button color</code> - Gradient color in format rrggbb hex.
+	</ul>
+
+	<ul>
+		<code>Name</code> - Name.
+	</ul>
+
+	<h3>Details</h3>
+	<p>Node that build a posix massage to inform LCD control task about button position, size and color and forward msg.payload into the button text area <p>
+
+	<h3>References</h3>
+	<ul>
+		<li><a>GitHub</a> - the nodes github repository</li>
+	</ul>
+
+</script>
