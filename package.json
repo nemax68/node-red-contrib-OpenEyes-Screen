@@ -1,23 +1,34 @@
 {
-	"dependencies": {
-		"posix-mq": "1.1.2"
-	},
-	"name"         : "openeyes-screen",
-	"version"      : "0.0.1",
-	"description"  : "Set screen on open-eyes LCD",
-	"repository" : {
-		"type": "git",
-		"url": "https://github.com/nemax68/node-red-contrib-OpenEyes-Screen"
-	},
-	"license": "GPL-3.0-or-later",
-	"keywords": [ "node-red", "contrib", "OpenEyes", "screen" ],
-	"node-red"     : {
-		"nodes": {
-			"screen": "screen/screen.js"
-		}
-	},
-	"author": {
-		"name": "Massimiliano Negretti",
-		"email": "massimiliano.negretti@open-eyes.it"
-	}
+  "author": {
+    "name": "Massimiliano Negretti",
+    "email": "massimiliano.negretti@open-eyes.it"
+  },
+  "bugs": {
+    "url": "https://github.com/nemax68/node-red-contrib-OpenEyes-Screen/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "posix-mq": "1.1.2"
+  },
+  "deprecated": false,
+  "description": "Set screen on open-eyes LCD",
+  "homepage": "https://github.com/nemax68/node-red-contrib-OpenEyes-Screen#readme",
+  "keywords": [
+    "node-red",
+    "contrib",
+    "OpenEyes",
+    "screen"
+  ],
+  "license": "GPL-3.0",
+  "name": "openeyes-screen",
+  "node-red": {
+    "nodes": {
+      "screen": "screen/screen.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nemax68/node-red-contrib-OpenEyes-Screen.git"
+  },
+  "version": "0.0.2"
 }

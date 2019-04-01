@@ -40,35 +40,7 @@
 </script>
 
 <script type="text/x-red" data-template-name="screen">
-<!--
-	<div class="form-row">
-		<label for="node-input-bid"><i class="icon-tag"></i> Button id</label>
-		<select type="text" id="node-input-bid" style="width:70%;">
-            <option value="1">BUTTON 1</option>
-            <option value="2">BUTTON 2</option>
-            <option value="3">BUTTON 3</option>
-            <option value="4">BUTTON 4</option>
-            <option value="5">BUTTON 5</option>
-            <option value="6">BUTTON 6</option>
-        </select>
-	</div>
-	<div class="form-row">
-		<label for="node-input-fontsize"> Font size</label>
-        <select type="text" id="node-input-fontsize" style="width:70%;">
-            <option value="10">10 pixel</option>
-            <option value="20">20 pixel</option>
-            <option value="30">30 pixel</option>
-            <option value="40">40 pixel</option>
-            <option value="50">50 pixel</option>
-            <option value="60">60 pixel</option>
-        </select>
-    </div>
-	<div class="form-row">
-        <label for="node-input-fontcol"> Font color</label>
-        <input type="text" id="node-input-fontcol" placeholder="color xxxxxx format">
-    </div>
 
--->
     <div class="form-row">
         <label for="node-input-maincol"> Screen color</label>
         <input type="text" id="node-input-maincol" placeholder="color xxxxxx format">
@@ -89,11 +61,11 @@
 	<p>An OpenEyes GUI interface node that setup a new screen into LCD display</p>
 
 	<ul>
-		<code>Button color</code> - Screen color in format rrggbb hex.
+		<code>Screen color</code> - Screen color in format rrggbb hex.
 	</ul>
 
 	<ul>
-		<code>Button color</code> - Gradient color in format rrggbb hex.
+		<code>Gradient color</code> - Gradient color in format rrggbb hex.
 	</ul>
 
 	<ul>
@@ -101,11 +73,11 @@
 	</ul>
 
 	<h3>Details</h3>
-	<p>Node that build a posix massage to inform LCD control task about button position, size and color and forward msg.payload into the button text area <p>
+	<p>This node build a posix massage that set the screen color of the OPEN-EYES LCD screen <p>
 
 	<h3>References</h3>
 	<ul>
-		<li><a>GitHub</a> - the nodes github repository</li>
+		<li><a href="https://github.com/nemax68/node-red-contrib-OpenEyes-Screen">GitHub</a> - the node github repository</li>
 	</ul>
 
 </script>
