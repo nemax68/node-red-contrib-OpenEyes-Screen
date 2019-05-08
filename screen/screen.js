@@ -25,39 +25,67 @@ module.exports = function (RED) {
 
 		this.fontsize = 30;//Number(config.fontsize);
 		this.fontcol = "000000";//config.fontcol;
+        this.name = config.name;
+        this.cmd = config.cmd;
+        this.path = config.path;
 		this.maincol = config.maincol;
 		this.gradcol = config.gradcol;
-		this.bid = 0;//Number(config.bid);
-
+        this.imgposx = config.imgposx;
+        this.imgposy = config.imgposy;
+        this.queue = '/gui_cmd';
 		var posixmq = new PosixMQ();
 		var node = this;
 		var msg;
-		var n;
-		var send = false;
-
-		posixmq.open({ name: '/gui_cmd',create: true,mode: '0777',maxmsgs: 10, msgsize: 256 });
-		node.status({fill: "green", shape: "dot", text: 'link'});
 
 		node.on('input', function(msg) {
-			var str;
-			var payload=msg.payload;
-			var n;
+            var str;
+            var payload=msg.payload;
+            var n;
 
-			str = "SCREEN," + node.bid.toString() +
- 						"," + node.fontsize +
- 						"," + node.fontcol +
- 						"," + node.maincol +
- 						"," + node.gradcol +
-						",END";
+            try{
+                switch (node.cmd) {
+                case "1":
+                    var type = "addimage";
+                    var path=node.path;
+                    var position = { "x" : node.imgposx, "y" : node.imgposy };
+                    break;
+                case "2":
+                    var type = "delimage";
+                    var color = {"main":node.maincol,"gradient":node.gradcol}
+                    break;
+                case "3":
+                    var type = "clrscreen";
+                    var color = {"main":node.maincol,"gradient":node.gradcol}
+                    break;
+                case "4":
+                    break;    
+                }
 
-			n = posixmq.push(str);
-		});
+                var obj = {
+                    type: type,
+                    name: node.name,
+                    path: path,
+                    position: position,
+                    color: color
+                };
 
-		node.on('close', function() {
-			posixmq.unlink();
-			posixmq.close();
-			node.status({fill: "red", shape: "dot", text: 'link'});
-		});
+                var strJSON = JSON.stringify(obj);
+
+                console.log(strJSON);
+
+                posixmq.open({ name: node.queue, create: false });
+                n = posixmq.push(strJSON);
+                posixmq.close();
+                node.status({fill: "green", shape: "dot", text: node.queue.toString()});
+            }
+            catch(err){
+                console.error(err);
+                node.status({fill: "red", shape: "dot", text: node.queue.toString()});
+            }
+
+
+        });
+
 	}
 
 	RED.nodes.registerType("screen", GuiScreen);
