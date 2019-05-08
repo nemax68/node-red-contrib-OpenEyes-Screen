@@ -20,9 +20,10 @@
         category: 'OpenEyes',
         color: '#a6bbcf',
         defaults: {
-			bid: {value:"1"},
-			fontsize: {value:"30"},
-			fontcol: {value:"000000"},
+			cmd: {value:"image"},
+			path: {value:""},
+            imgposx: {value:0},
+            imgposy: {value:0},
 			maincol: {value:"FFFFFF"},
 			gradcol: {value:"000000"},
             name: {value:"screen"}    //  along with default values.
@@ -35,6 +36,43 @@
         },
         labelStyle: function() { // sets the class to apply to the label
             return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            //if (this.property === undefined) {
+            //    $("#node-input-property").val("payload");
+            //}
+            //$("#node-input-property").typedInput({default:'msg',types:['msg']});
+            //if ($("#node-input-inout").val() === null) {
+            //    $("#node-input-inout").val("out");
+            //}
+            $("#node-input-cmd").on("change",function() {
+                if (($("#node-input-cmd").val() === "1")) {
+                    $("#node-path").show();
+                    $("#node-imgposx").show();
+                    $("#node-imgposy").show();
+                    $("#node-maincol").hide();
+                    $("#node-gradcol").hide();
+                } else if ($("#node-input-cmd").val() === "2") {
+                    $("#node-path").hide();
+                    $("#node-imgposx").hide();
+                    $("#node-imgposy").hide();
+                    $("#node-maincol").hide();
+                    $("#node-gradcol").hide();
+                } else if ($("#node-input-cmd").val() === "3") {
+                    $("#node-path").hide();
+                    $("#node-imgposx").hide();
+                    $("#node-imgposy").hide();
+                    $("#node-maincol").show();
+                    $("#node-gradcol").show();
+                } else if ($("#node-input-cmd").val() === "4") {
+                    $("#node-path").hide();
+                    $("#node-imgposx").hide();
+                    $("#node-imgposy").hide();
+                    $("#node-maincol").hide();
+                    $("#node-gradcol").hide();
+                }
+
+            });
         }
     });
 </script>
@@ -42,12 +80,38 @@
 <script type="text/x-red" data-template-name="screen">
 
     <div class="form-row">
-        <label for="node-input-maincol"> Screen color</label>
-        <input type="text" id="node-input-maincol" placeholder="color xxxxxx format">
+        <label for="node-input-cmd"><i class="icon-tag"></i> cmd</label>
+        <select type="text" id="node-input-cmd" style="width:70%;">
+            <option value="1">add image</option>
+            <option value="2">del image</option>
+            <option value="3">clear screen</option>
+            <option value="4">input</option>
+        </select>
     </div>
-    <div class="form-row">
+
+    <div class="form-row" id="node-path">
+        <label for="node-input-path"> path</label>
+        <input type="text" id="node-input-path" placeholder="path to image pitmap">
+    </div>
+
+    <div class="form-row" id="node-imgposx">
+        <label for="node-input-imgposx"> pos x</label>
+        <input type="text" id="node-input-imgposx" placeholder="-">
+    </div>
+
+    <div class="form-row" id="node-imgposy">
+        <label for="node-input-imgposy"> pos y</label>
+        <input type="text" id="node-input-imgposy" placeholder="-">
+    </div>
+
+    <div class="form-row" id="node-maincol">
+        <label for="node-input-maincol"> Screen color</label>
+        <input type="color" id="node-input-maincol" name="favcolor" >
+    </div>
+
+    <div class="form-row" id="node-gradcol">
         <label for="node-input-gradcol"> gradient color</label>
-        <input type="text" id="node-input-gradcol" placeholder="color xxxxxx format">
+        <input type="color" id="node-input-gradcol" name="favcolor" >
     </div>
 
 	<div class="form-row">
@@ -58,7 +122,24 @@
 
 <script type="text/x-red" data-help-name="screen">
 
-	<p>An OpenEyes GUI interface node that setup a new screen into LCD display</p>
+    <p>A node-red library that build JSON message that control image object
+        and send it to LCD GUI interface</p>
+
+    <h3>cmd</h3>
+    <ul>
+        <code>image</code> draw image on LCD
+    </ul>
+    <ul>
+        <code>color</code> fill color on LCD
+    </ul>
+    <ul>
+        <code>input</code> JSON payload is forwarded to LCD
+    </ul>
+
+    <h3>params</h3>
+    <ul>
+        <code>Path</code> - Path to image bitmat to draw on LCD
+    </ul>
 
 	<ul>
 		<code>Screen color</code> - Screen color in format rrggbb hex.
@@ -73,7 +154,7 @@
 	</ul>
 
 	<h3>Details</h3>
-	<p>This node build a posix massage that set the screen color of the OPEN-EYES LCD screen <p>
+	<p>This node build a posix massage that control LCD image of the OPEN-EYES LCD screen <p>
 
 	<h3>References</h3>
 	<ul>

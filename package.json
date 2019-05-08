@@ -8,7 +8,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "posix-mq": "1.1.2"
+    "posix-mq": "^1.1.2"
   },
   "deprecated": false,
   "description": "Set screen on open-eyes LCD",
@@ -30,5 +30,5 @@
     "type": "git",
     "url": "git+https://github.com/nemax68/node-red-contrib-OpenEyes-Screen.git"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
