@@ -58,7 +58,7 @@ module.exports = function (RED) {
                     var color = {"main":node.maincol,"gradient":node.gradcol}
                     break;
                 case "4":
-                    break;    
+                    break;
                 }
 
                 var obj = {
@@ -70,8 +70,6 @@ module.exports = function (RED) {
                 };
 
                 var strJSON = JSON.stringify(obj);
-
-                console.log(strJSON);
 
                 posixmq.open({ name: node.queue, create: false });
                 n = posixmq.push(strJSON);
